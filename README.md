@@ -125,4 +125,4 @@ Abans de modificar el CSV, es coordinarà el nou contracte amb l’Agent 2 a la 
 - Aquesta consolidació s’ha fet amb l’API Git de GitHub, amb un commit de dos pares; no s’ha executat un merge local des del terminal de l’Agent 2. La resolució local de conflictes de l’Agent 1 està registrada al commit `b8dd407`.
 - Topologia final: branques individuals per a les bitàcoles, branca compartida per als canvis dependents del protocol i branca d’auditoria per a la matriu. Cap d’aquestes aportacions s’integra a main sense PR revisada.
 - Pendent: integrar la bitàcola final de l’Agent 1, revisar les PR finals i publicar v1.0-gold després de l’auditoria final.
->>>>>>> origin/main
+
