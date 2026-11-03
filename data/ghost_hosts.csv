@@ -1,0 +1,5 @@
+IP,Amenaca,Nivell,Port_Infectat
+192.0.2.10,ghost,alt,22
+192.0.2.10,ghost,alt,443
+192.0.2.20,spectre,alt,3389
+192.0.2.30,phantom,baix,8080
