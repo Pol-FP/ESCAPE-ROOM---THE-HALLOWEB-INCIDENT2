@@ -15,6 +15,13 @@ Testing with chatgpt as Agent2
 - Validació local: sintaxi Bash correcta, simulació INPUT/OUTPUT correcta, eliminació de hosts duplicats i rebuig d'una IP invàlida. No s'han aplicat regles reals.
 - Es publiquen els fitxers a la branca de l'Agent 2 per a revisió mitjançant PR; la integració a `main` queda pendent de revisió creuada.
 
+### Descoberta a la branca de l’Agent 1
+
+- Revisada la PR #2 de `projecte/spectral-data`, commit `5fdaf52e7e2557aeec859376efbbdd205307210b`.
+- `data/ghost_hosts.csv` conté la capçalera pactada `IP,Amenaca,Nivell` i el host `192.0.2.10,ghost,alt`.
+- Simulació amb aquest contingut: un host processat i dues regles previstes (INPUT i OUTPUT), sense aplicar bloquejos reals.
+- El README de l’Agent 1 encara indica que el CSV no està publicat i que persisteix l’error 403. Cal actualitzar aquestes dues línies abans de donar per tancada la revisió.
+
 ### Execució
 
 Requisits: Bash i Python 3. Per aplicar regles: Linux amb `iptables` i/o `ip6tables`.
