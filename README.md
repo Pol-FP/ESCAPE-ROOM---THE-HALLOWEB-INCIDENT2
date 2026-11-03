@@ -51,3 +51,17 @@ L’Agent 1 prepara i publica el CSV. L’Agent 2 desenvolupa `scripts/exorcism.
 - Revisió creuada de l’Agent 1 a la PR #1: s’ha simplificat el README retirant les incidències de connexió i l’apartat d’execució.
 
 La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coordinadament amb l’Agent 1.
+
+## Fase 2 — Implementació del hotfix compartit
+
+- Escenari artificial preparat a petició de l’Agent 1: branca `feature/nightmare-code` i Issue #3; no és una aportació del professor.
+- Agent 1: commit `013abcf`, CSV amb capçalera `IP,Amenaca,Nivell,Port_Infectat`, ports crítics 22/443/3389 i cas no crític 8080. La IP 192.0.2.10 té dos ports diferents.
+- Agent 2: adaptació del parser i de les regles a parelles IP/port. Es valida tot el CSV abans de produir ordres o modificar el tallafoc. Ports vàlids: enters entre 1 i 65535; la política del laboratori selecciona només TCP 22, 443 i 3389.
+- Es dedupliquen parelles IP/port sense perdre ports diferents del mateix host. IPv4 i IPv6 utilitzen iptables i ip6tables, respectivament.
+- El servei infectat correspon al host remot: INPUT filtra la IP i el port d’origen; OUTPUT filtra la IP i el port de destinació. Les regles noves s’insereixen al principi de la cadena.
+- Simulació per defecte; l’aplicació real continua requerint `--apply`, permisos root i el tallafoc corresponent. No s’han aplicat bloquejos reals en les proves.
+- Proves: `bash -n scripts/exorcism.sh` i `python3 -m unittest discover -s tests -v`; set proves superades (ports crítics/no crítics, duplicats, IPv6, ports invàlids, IP invàlida, esquema antic, camps incorrectes i límits de ports).
+- Amb el CSV de l’Agent 1: tres parelles crítiques, sis regles simulades i una parella omesa (TCP/8080).
+- Aïllament: la mostra inerta `scripts/nightmare.sh` és a `feature/nightmare-code`; no s’ha incorporat al hotfix ni a `main`. No correspon fer revert d’un codi que no s’ha integrat.
+- Topologia: el hotfix parteix de `main` després de v0.1-alpha i reuneix commits diferenciats dels dos agents per coordinar canvis dependents. La integració es farà per PR revisada.
+- Pendent: revisió creuada, merge, comprovació del resultat a main i publicació de v0.2-beta. Les bitàcoles individuals es consolidaran a la fase 3.
