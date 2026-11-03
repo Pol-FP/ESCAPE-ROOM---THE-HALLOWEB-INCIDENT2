@@ -64,4 +64,25 @@ La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coord
 - Amb el CSV de l’Agent 1: tres parelles crítiques, sis regles simulades i una parella omesa (TCP/8080).
 - Aïllament: la mostra inerta `scripts/nightmare.sh` és a `feature/nightmare-code`; no s’ha incorporat al hotfix ni a `main`. No correspon fer revert d’un codi que no s’ha integrat.
 - Topologia: el hotfix parteix de `main` després de v0.1-alpha i reuneix commits diferenciats dels dos agents per coordinar canvis dependents. La integració es farà per PR revisada.
-- Pendent: revisió creuada, merge, comprovació del resultat a main i publicació de v0.2-beta. Les bitàcoles individuals es consolidaran a la fase 3.
+- Revisió i merge del hotfix completats a la PR #4; v0.2-beta publicada sobre `7c94db3` i Issue #3 tancada. Les bitàcoles individuals es consoliden a la fase 3.
+
+## Fase 2 — Preparació de l’escenari simulat (Agent 2)
+
+- A petició de l’Agent 1, l’Agent 2 ha preparat artificialment `feature/nightmare-code` i la Issue #3. No són aportacions del professor.
+- La branca de laboratori parteix del `main` de la fase 1 (`38312dc`). Conté una mostra inerta i pistes del canvi de protocol; no s’ha integrat a `main`.
+- La política de ports TCP crítics 22, 443 i 3389 és una decisió explícita d’aquesta simulació, ja que l’enunciat no els concreta.
+- Es reserva `hotfix/protocol-update`, que es crearà des de `main`, per coordinar el canvi de CSV de l’Agent 1 i el canvi de script de l’Agent 2. Encara no s’ha implementat el hotfix.
+- Topologia: branca contaminada separada per a investigació; hotfix compartit per mantenir junts els canvis dependents; integració a `main` exclusivament amb PR revisada.
+
+### Descoberta al hotfix compartit
+
+- Inspeccionat el commit `013abcf` de l’Agent 1 a `hotfix/protocol-update`: el CSV incorpora `Port_Infectat` amb els ports 22, 443, 3389 i 8080; la mateixa IP apareix amb 22 i 443.
+- El parser de la fase 1 només admet tres columnes i rebutja aquest esquema. L’Agent 2 adapta el parser i el filtre en el mateix hotfix abans de demanar la integració.
+
+## Fase 3 — Bitàcola de l’Agent 2
+
+- Preparat `reports/dashboard.md` a `feature/status-dashboard`: l’Agent 2 ha creat la matriu i l’Agent 1 l’ha revisada i aprovada a la PR #5. Dashboard integrat a `main` mitjançant commit de merge.
+- Incorporat el contingut actual de `main` a `projecte/defense-script` i consolidada manualment la documentació de l’Agent 2. S’han conservat les bitàcoles de la fase 1, el registre del hotfix i tots els fitxers de codi, dades, proves i informe del main actualitzat.
+- Aquesta consolidació s’ha fet amb l’API Git de GitHub, amb un commit de dos pares; no s’ha executat un merge local des del terminal de l’Agent 2. La resolució local de conflictes de l’Agent 1 està registrada al commit `b8dd407`.
+- Topologia final: branques individuals per a les bitàcoles, branca compartida per als canvis dependents del protocol i branca d’auditoria per a la matriu. Cap d’aquestes aportacions s’integra a main sense PR revisada.
+- Pendent: integrar la bitàcola final de l’Agent 1, revisar les PR finals i publicar v1.0-gold després de l’auditoria final.
