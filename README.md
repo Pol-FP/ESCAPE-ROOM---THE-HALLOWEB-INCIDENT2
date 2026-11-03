@@ -25,6 +25,6 @@ L’Agent 1 prepara i publica el CSV. L’Agent 2 desenvolupa `scripts/exorcism.
 
 - Contracte de dades acceptat pels dos agents.
 - L’Agent 2 ha preparat localment el script i ha comprovat la simulació de bloquejos i el rebuig d’IP invàlides.
-- La publicació de la branca de l’Agent 2 està pendent de resoldre un error 403 de la integració de GitHub.
+- L’Agent 1 ha publicat data/ghost_hosts.csv a projecte/spectral-data i ha obert la PR #2.
 - La creació i publicació del CSV de l’Agent 1 està pendent.
 - La integració a `main` es farà mitjançant Pull Requests amb revisió del company.
