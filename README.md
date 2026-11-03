@@ -23,3 +23,11 @@ Testing with chatgpt as Agent2
 - Revisió creuada de l’Agent 1 a la PR #1: s’ha simplificat el README retirant les incidències de connexió i l’apartat d’execució.
 
 La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coordinadament amb l’Agent 1.
+
+## Fase 2 — Preparació de l’escenari simulat (Agent 2)
+
+- A petició de l’Agent 1, l’Agent 2 ha preparat artificialment `feature/nightmare-code` i la Issue #3. No són aportacions del professor.
+- La branca de laboratori parteix del `main` de la fase 1 (`38312dc`). Conté una mostra inerta i pistes del canvi de protocol; no s’ha integrat a `main`.
+- La política de ports TCP crítics 22, 443 i 3389 és una decisió explícita d’aquesta simulació, ja que l’enunciat no els concreta.
+- Es reserva `hotfix/protocol-update`, que es crearà des de `main`, per coordinar el canvi de CSV de l’Agent 1 i el canvi de script de l’Agent 2. Encara no s’ha implementat el hotfix.
+- Topologia: branca contaminada separada per a investigació; hotfix compartit per mantenir junts els canvis dependents; integració a `main` exclusivament amb PR revisada.
