@@ -52,6 +52,27 @@ L’Agent 1 prepara i publica el CSV. L’Agent 2 desenvolupa `scripts/exorcism.
 
 La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coordinadament amb l’Agent 1.
 
+## Fase 2 — Bitàcola de l’Agent 1
+
+- **Responsable:** Agent 1 (Admin/Dades).
+- **Branca assignada:** `projecte/spectral-data`.
+- **Tasca:** investigar la branca `feature/nightmare-code` i identificar les pistes del canvi de protocol.
+
+### Pistes trobades
+
+Al fitxer ocult `.incident/protocol.env` s’han identificat els requisits següents:
+
+- **Contracte de dades:** el CSV ha d’incorporar la columna `Port_Infectat`, amb aquesta capçalera: `IP,Amenaca,Nivell,Port_Infectat`.
+- **Ports crítics:** en aquesta simulació, es consideren crítics els ports `22`, `443` i `3389`.
+- **Protocol de transport:** `TCP`.
+- **Ports no crítics:** l’script els ha d’ometre (`skip`).
+- **Mode per defecte:** simulació (`dry-run`), sense aplicar canvis reals al tallafoc.
+- **Representació de les dades:** cada fila correspon a una parella IP/port. Una mateixa IP pot aparèixer en diverses files amb ports diferents.
+
+### Coordinació amb l’Agent 2
+
+Abans de modificar el CSV, es coordinarà el nou contracte amb l’Agent 2 a la branca compartida `hotfix/protocol-update`, perquè les dades i l’script siguin compatibles.
+
 ## Fase 2 — Implementació del hotfix compartit
 
 - Escenari artificial preparat a petició de l’Agent 1: branca `feature/nightmare-code` i Issue #3; no és una aportació del professor.
@@ -79,6 +100,24 @@ La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coord
 - Inspeccionat el commit `013abcf` de l’Agent 1 a `hotfix/protocol-update`: el CSV incorpora `Port_Infectat` amb els ports 22, 443, 3389 i 8080; la mateixa IP apareix amb 22 i 443.
 - El parser de la fase 1 només admet tres columnes i rebutja aquest esquema. L’Agent 2 adapta el parser i el filtre en el mateix hotfix abans de demanar la integració.
 
+## Fase 3 — Bitàcola de l’Agent 1
+
+- **Responsable:** Agent 1 (Admin/Dades).
+- **Branca:** `projecte/spectral-data`.
+
+### Revisió i consolidació
+
+- Revisada i aprovada la PR #5, que incorpora la matriu de monitoratge a `reports/dashboard.md`.
+- Incorporats els canvis de `main` a la branca individual, conservant les bitàcoles dels dos agents i la documentació del hotfix.
+- Preparada la PR final per integrar les troballes de la fase 2 i aquesta bitàcola de la fase 3.
+
+### Estat del projecte
+
+- `v0.1-alpha`: contracte inicial i script d’aïllament.
+- `v0.2-beta`: columna `Port_Infectat` i filtratge de ports crítics.
+- Issue #3 tancada després d’integrar el hotfix.
+- Pendent: revisió i integració de les PR finals, auditoria final i publicació de `v1.0-gold`.
+
 ## Fase 3 — Bitàcola de l’Agent 2
 
 - Preparat `reports/dashboard.md` a `feature/status-dashboard`: l’Agent 2 ha creat la matriu i l’Agent 1 l’ha revisada i aprovada a la PR #5. Dashboard integrat a `main` mitjançant commit de merge.
@@ -86,3 +125,4 @@ La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coord
 - Aquesta consolidació s’ha fet amb l’API Git de GitHub, amb un commit de dos pares; no s’ha executat un merge local des del terminal de l’Agent 2. La resolució local de conflictes de l’Agent 1 està registrada al commit `b8dd407`.
 - Topologia final: branques individuals per a les bitàcoles, branca compartida per als canvis dependents del protocol i branca d’auditoria per a la matriu. Cap d’aquestes aportacions s’integra a main sense PR revisada.
 - Pendent: integrar la bitàcola final de l’Agent 1, revisar les PR finals i publicar v1.0-gold després de l’auditoria final.
+
