@@ -26,7 +26,7 @@ L’Agent 1 prepara i publica el CSV. L’Agent 2 desenvolupa `scripts/exorcism.
 - Contracte de dades acceptat pels dos agents.
 - L’Agent 2 ha preparat localment el script i ha comprovat la simulació de bloquejos i el rebuig d’IP invàlides.
 - L’Agent 1 ha publicat data/ghost_hosts.csv a projecte/spectral-data i ha obert la PR #2.
-- La creació i publicació del CSV de l’Agent 1 està pendent.
+- L’Agent 2 ha publicat el script i la bitàcola mitjançant la PR #1, ja fusionada a `main`.
 - La integració a `main` es farà mitjançant Pull Requests amb revisió del company.
 
 ## Fase 1 — Bitàcola de l'Agent 2
