@@ -31,3 +31,8 @@ La columna `Port_Infectat` i el filtre de ports s’abordaran a la fase 2, coord
 - La política de ports TCP crítics 22, 443 i 3389 és una decisió explícita d’aquesta simulació, ja que l’enunciat no els concreta.
 - Es reserva `hotfix/protocol-update`, que es crearà des de `main`, per coordinar el canvi de CSV de l’Agent 1 i el canvi de script de l’Agent 2. Encara no s’ha implementat el hotfix.
 - Topologia: branca contaminada separada per a investigació; hotfix compartit per mantenir junts els canvis dependents; integració a `main` exclusivament amb PR revisada.
+
+### Descoberta al hotfix compartit
+
+- Inspeccionat el commit `013abcf` de l’Agent 1 a `hotfix/protocol-update`: el CSV incorpora `Port_Infectat` amb els ports 22, 443, 3389 i 8080; la mateixa IP apareix amb 22 i 443.
+- El parser de la fase 1 només admet tres columnes i rebutja aquest esquema. L’Agent 2 adapta el parser i el filtre en el mateix hotfix abans de demanar la integració.
