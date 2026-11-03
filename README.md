@@ -72,3 +72,21 @@ Al fitxer ocult `.incident/protocol.env` s’han identificat els requisits segü
 ### Coordinació amb l’Agent 2
 
 Abans de modificar el CSV, es coordinarà el nou contracte amb l’Agent 2 a la branca compartida `hotfix/protocol-update`, perquè les dades i l’script siguin compatibles.
+
+## Fase 3 — Bitàcola de l’Agent 1
+
+- **Responsable:** Agent 1 (Admin/Dades).
+- **Branca:** `projecte/spectral-data`.
+
+### Revisió i consolidació
+
+- Revisada i aprovada la PR #5, que incorpora la matriu de monitoratge a `reports/dashboard.md`.
+- Incorporats els canvis de `main` a la branca individual, conservant les bitàcoles dels dos agents i la documentació del hotfix.
+- Preparada la PR final per integrar les troballes de la fase 2 i aquesta bitàcola de la fase 3.
+
+### Estat del projecte
+
+- `v0.1-alpha`: contracte inicial i script d’aïllament.
+- `v0.2-beta`: columna `Port_Infectat` i filtratge de ports crítics.
+- Issue #3 tancada després d’integrar el hotfix.
+- Pendent: revisió i integració de les PR finals, auditoria final i publicació de `v1.0-gold`.
